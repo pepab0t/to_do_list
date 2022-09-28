@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 from typing import Any, Optional
 
@@ -55,7 +56,7 @@ class NoteData(BaseModel):
     def deadline_p(self):
         if not self.deadline:
             return None
-        return self.deadline.strftime(date_format)
+        return self.deadline.strftime(r"%d.%m.%Y")
 
     @deadline_p.setter
     def deadline_p(self, value: datetime):
@@ -71,13 +72,46 @@ class Note(QtWidgets.QFrame):
         super().__init__(parent)
         UiLoader().loadUi(f"{PATH}/gui/note.ui", self)
 
-        self.data: NoteData = NoteData(**data)
+        self.data: Optional[NoteData] = None
 
-        self.labelTitle.setText(self.data.title_p)
-        self.editContent.setText(self.data.content_p)
+        self.buttonConfirm.clicked.connect(self.confirm)
+        # self.editTitle.setText(self.data.title_p)
+        # self.editContent.setText(self.data.content_p)
+        # self.labelCreated.setText(self.data.created_p)
+        # self.editDeadline.setText(self.data.deadline_p)
+
+        # self.data.event_handler.title += self.labelTitle.setText  # type: ignore
+        # self.data.event_handler.content += self.editContent.setText  # type: ignore
+        # self.data.event_handler.deadline += self.labelDeadline.setText  # type: ignore
+
+    def confirm(self):
+        self.editTitle.setEnabled(False)
+        self.editDeadline.setEnabled(False)
+        self.editContent.setEnabled(False)
+
+        deadline_input: str = self.editDeadline.text().strip()
+
+        date_match = re.match(r'^(\d{2})\.(\d{2})\.(\d{4})$', deadline_input)
+        
+        if date_match:
+            try:
+                args = [int(x) for x in date_match.groups()][::-1]
+                print(args)
+                deadline = datetime(*args)  # type: ignore
+            except ValueError:
+                deadline = None
+        else:
+            deadline = None
+
+        self.data = NoteData(
+            title=self.editTitle.text(),
+            content=self.editContent.toPlainText(),
+            deadline=deadline
+        )  # type: ignore
+
+        self.editDeadline.setText(self.data.deadline_p)
+
+        print(deadline)
         self.labelCreated.setText(self.data.created_p)
-        self.labelDeadline.setText(self.data.deadline_p)
-
-        self.data.event_handler.title += self.labelTitle.setText  # type: ignore
-        self.data.event_handler.content += self.editContent.setText  # type: ignore
-        self.data.event_handler.deadline += self.labelDeadline.setText  # type: ignore
+        self.frameConfirm.hide()
+    

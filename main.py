@@ -24,7 +24,7 @@ class MainWindow(QtWidgets.QMainWindow):
         }, parent=self.noteFrame)
 
         self.notes.append(note)
-        self.noteLayout.addWidget(note)
+        self.noteLayout.insertWidget(0, note)
 
 def main():
     import sys
