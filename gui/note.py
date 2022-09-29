@@ -84,10 +84,21 @@ class Note(QtWidgets.QFrame):
         # self.data.event_handler.content += self.editContent.setText  # type: ignore
         # self.data.event_handler.deadline += self.labelDeadline.setText  # type: ignore
 
+    def lock(self):
+        self.editTitle.setReadOnly(True)
+        self.editDeadline.setReadOnly(True)
+        self.editContent.setReadOnly(True)
+
+        # self.editTitle.setStyleSheet("QLineEdit[readOnly=\"true\"]{ background-color: rgb(220, 138, 221); }")
+        # self.editTitle.setStyleSheet()
+
+        self.editTitle.style().polish(self.editTitle)
+        self.editDeadline.style().polish(self.editDeadline)
+        self.editContent.style().polish(self.editContent)
+        # self.style().polish(self)
+
     def confirm(self):
-        self.editTitle.setEnabled(False)
-        self.editDeadline.setEnabled(False)
-        self.editContent.setEnabled(False)
+        self.lock()
 
         deadline_input: str = self.editDeadline.text().strip()
 

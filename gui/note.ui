@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>688</width>
-    <height>326</height>
+    <height>307</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,7 +23,9 @@
    <string notr="true">QFrame{
 	border-radius: 5px;
 	background-color: rgb(255, 190, 111);
-}</string>
+}
+
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -52,6 +54,31 @@
       </property>
       <item>
        <widget class="QLineEdit" name="editTitle">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit[readOnly=&quot;false&quot;]{
+	background-color: white;
+}
+
+
+QLineEdit[readOnly=&quot;true&quot;]{
+	background-color: rgb(220, 138, 221);
+}</string>
+        </property>
+        <property name="text">
+         <string>asaasasda</string>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
+        <property name="dragEnabled">
+         <bool>false</bool>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
         <property name="placeholderText">
          <string>Set Title</string>
         </property>
@@ -152,6 +179,16 @@
        <height>0</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit[readOnly=&quot;false&quot;]{
+	background-color: white;
+}
+
+
+QTextEdit[readOnly=&quot;true&quot;]{
+	background-color: rgb(220, 138, 221);
+}</string>
+     </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
@@ -240,11 +277,21 @@ p, li { white-space: pre-wrap; }
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit[readOnly=&quot;false&quot;]{
+	background-color: white;
+}
+
+
+QLineEdit[readOnly=&quot;true&quot;]{
+	background-color: rgb(220, 138, 221);
+}</string>
+        </property>
         <property name="inputMask">
          <string>99.99.9999</string>
         </property>
         <property name="text">
-         <string>..</string>
+         <string>01.01.2022</string>
         </property>
         <property name="readOnly">
          <bool>false</bool>
