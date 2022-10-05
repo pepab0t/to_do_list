@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
-    <height>540</height>
+    <width>1131</width>
+    <height>649</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,6 +66,13 @@ font-size: 10pt;</string>
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="buttonPrint">
+            <property name="text">
+             <string>Print</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -83,16 +90,54 @@ font-size: 10pt;</string>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
-         <widget class="QWidget" name="noteFrame">
+         <widget class="QWidget" name="widget">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>448</width>
-            <height>477</height>
+            <width>885</width>
+            <height>586</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="noteLayout"/>
+          <layout class="QVBoxLayout">
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QFrame" name="noteFrame">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="noteLayout"/>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
